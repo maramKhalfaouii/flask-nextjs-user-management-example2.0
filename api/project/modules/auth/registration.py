@@ -5,7 +5,7 @@ from project.modules.users.models import Users
 from project.modules.utils import generate_token_from_data
 from http import HTTPStatus
 from flask_restx import Resource, Namespace, fields
-from flask_sqlalchemy import orm
+
 from project.extensions import db
 
 log = logging.getLogger(__name__)

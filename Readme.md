@@ -18,29 +18,37 @@ Before you run this application make sure you have this installed in your machin
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [docker-compose](https://docs.docker.com/compose/install/)
 
+
 ### Running Locally
 
 To run the application locally, run this command
 
 ```
-$ docker-compose up
+docker-compose up
 ```
 
-#### Database Migration and Seed
+
+### Database Migration and Seed
+At your first run, create the database (migration) and insert some data (seed).
 
 ```
 # Run database migration
-$ docker-compose exec api python manage.py db upgrade
+docker-compose exec api python manage.py db upgrade
 
 # Run database seed
-$ docker-compose exec api python manage.py seed_db
+docker-compose exec api python manage.py seed_db
 ```
 
-The seeder will contain sample users data:
+
+### Using the app
+
+After you run above commands you can open the application from [http://localhost:8080/](http://localhost:8080/)
+
+Use the following credentials to connect:
 
 ```
-username : admin
+email : admin@gmail.com
 password : verysecurepassword
 ```
 
-After you run above commands you can open the application from [http://localhost:8080/](http://localhost:8080/)
+

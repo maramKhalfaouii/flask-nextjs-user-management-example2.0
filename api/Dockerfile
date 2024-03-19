@@ -3,7 +3,7 @@ FROM python:3.11-slim
 
 # Install netcat
 RUN apt-get update && \
-    apt-get -y install netcat && \
+    apt-get -y install ncat && \
     apt-get clean
 
 # set working directory

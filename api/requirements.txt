@@ -1,0 +1,16 @@
+coverage
+Flask
+Flask-SQLAlchemy
+psycopg2-binary
+itsdangerous
+gunicorn
+flask-bcrypt
+flask-cors
+flask-marshmallow
+flask-migrate
+flask-restx
+Flask-Testing
+marshmallow-sqlalchemy
+pyjwt
+requests
+SQLAlchemy-Utils

@@ -1,29 +1,80 @@
-name: Build and deploy backend
+name: Build and deploy frontend and backend
 
-on: 
+on:
   push:
     branches:
       - master
-      
+
 jobs:
-  build-deploy:
-    name: Build and Deploy flask backend
+  build-and-deploy-frontend:
+    name: Build and Deploy Frontend
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '13.13.0'
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: client
+
+      - name: Build Next.js app
+        run: npm run build
+        working-directory: client
+        
+      - name: Build Frontend Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: ./client   
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-nextjs-user-management-example2.0:${{ github.run_id }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+  build-and-deploy-backend:
+    name: Build and Deploy Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.11.8'
 
-      - name: Install requirements
+      - name: Install backend requirements
+        working-directory: api
         run: |
           python -m pip install --upgrade pip
-          pip install -r ./api/requirements.txt
+          pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Run backend tests
+        working-directory: api
         run: |
-          python -m unittest ./api/project/tests/test*.py
+          python -m unittest project/tests/test*.py
 
+      - name: Build Backend Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: ./api
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-nextjs-user-management-example2.0:${{ github.run_id }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}

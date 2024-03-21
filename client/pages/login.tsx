@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { TextInput } from "components/text-input";
 import { AuthApi } from "services";
@@ -10,17 +10,20 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const LoginForm = styled.form`
-  margin: 20px auto;
-  width: 40%;
-`;
+const LoginForm: React.FC<{ onSubmit: (e: FormEvent) => Promise<void> }> = ({ onSubmit, children }) => {
+  return (
+    <form onSubmit={onSubmit}>
+      {children}
+    </form>
+  );
+};
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsError(false);
     try {
@@ -40,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <Container className="col-12">
+    <Container>
       <LoginForm onSubmit={onSubmit}>
         <TextInput
           label="Email"

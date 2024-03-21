@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\nconst Footer = () => {\n  return __jsx(\"footer\", {\n    className: \"bg-dark\"\n  }, __jsx(\"div\", null, \"Github\"));\n};\nexport default Footer;","map":null,"metadata":{},"sourceType":"module"}

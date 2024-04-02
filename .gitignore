@@ -7,3 +7,5 @@ desktop.ini
 .vscode
 .vim
 data
+api/migrations/__pycache__/
+api/project/__pycache__/

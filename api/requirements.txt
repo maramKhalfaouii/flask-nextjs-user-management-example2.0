@@ -14,3 +14,4 @@ marshmallow-sqlalchemy
 pyjwt
 requests
 SQLAlchemy-Utils
+sqlalchemy < 1.4.0

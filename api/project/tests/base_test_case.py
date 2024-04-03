@@ -1,7 +1,7 @@
 import unittest
-from modules.users.models import Users 
-from config import TestingConfig
-from __init__ import create_app
+from project.modules.users.models import Users 
+from project.config import TestingConfig
+from project.__init__ import create_app
 from project.extensions import db
 
 

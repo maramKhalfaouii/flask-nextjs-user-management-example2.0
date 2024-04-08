@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router';
 import React, { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { TextInput } from "components/text-input";
 import { AuthApi } from "services";
 import { login } from "utils/auth";
+
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +21,7 @@ const LoginForm: React.FC<{ onSubmit: (e: FormEvent) => Promise<void> }> = ({ on
 };
 
 const Registration = () => {
+  const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,7 +34,7 @@ const Registration = () => {
     try {
       const api = new AuthApi();
       api.setup();
-      const response = await api.login(email, password);
+      const response = await api.register(firstName, lastName, email, password);
 
       if (response.kind === "ok") {
         const { token } = response;
@@ -39,6 +42,7 @@ const Registration = () => {
       } else {
         setIsError(true);
       }
+      router.push('/login');
     } catch (err) {
       setIsError(true);
     }

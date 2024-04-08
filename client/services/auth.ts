@@ -71,4 +71,27 @@ export class AuthApi extends Api {
       return { kind: "bad-data" };
     }
   }
+  async register(firstName: string, lastName: string, email: string, password: string): Promise<AuthResponse> {
+    const response: ApiResponse<any> = await this.apisauce.post(
+      "/api/v1/auth/register",
+      {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      }
+    );
+  
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response);
+      if (problem) return problem;
+    }
+  
+    try {
+      const data = response.data;
+      return { kind: "ok", token: data.auth_token, user: data.user };
+    } catch {
+      return { kind: "bad-data" };
+    }
+  }  
 }

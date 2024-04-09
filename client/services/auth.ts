@@ -73,7 +73,7 @@ export class AuthApi extends Api {
   }
   async register(firstName: string, lastName: string, email: string, password: string): Promise<AuthResponse> {
     const response: ApiResponse<any> = await this.apisauce.post(
-      "/api/v1/auth/register",
+      "/api/v1/registrations/register",
       {
         firstName: firstName,
         lastName: lastName,

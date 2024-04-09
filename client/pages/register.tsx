@@ -12,7 +12,9 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const LoginForm: React.FC<{ onSubmit: (e: FormEvent) => Promise<void> }> = ({ onSubmit, children }) => {
+const LoginForm: React.FC<{ onSubmit: (e: FormEvent) => Promise<void> 
+  children?: React.ReactNode; // Define children as optional
+}> = ({ onSubmit, children }) => {
   return (
     <form onSubmit={onSubmit}>
       {children}
@@ -80,6 +82,8 @@ const Registration = () => {
           value={email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setEmail(e.target.value);
+            console.log(email);
+
           }}
         />
         <TextInput
@@ -105,6 +109,7 @@ const Registration = () => {
         </div>
       )}
     </Container>
+    
   );
 };
 

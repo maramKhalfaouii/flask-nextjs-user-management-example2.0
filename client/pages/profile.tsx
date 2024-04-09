@@ -41,11 +41,15 @@ const Profile = () => {
             </>
           ) : (
             <div>Loading...</div>
-          )}
+            
+            )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+ ;
+ 
+}
+;
 
 export default withAuth(Profile);

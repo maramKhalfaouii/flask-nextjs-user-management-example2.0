@@ -25,6 +25,7 @@ export class UserApi extends Api {
     );
 
     if (!response.ok) {
+      console.log(id)
       const problem = getGeneralApiProblem(response);
       if (problem) return problem;
     }

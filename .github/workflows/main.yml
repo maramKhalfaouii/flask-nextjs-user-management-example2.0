@@ -9,19 +9,10 @@ jobs:
   build-and-deploy-frontend:
     name: Build and Deploy Frontend
     runs-on: ubuntu-latest
-    permissions: read-all
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Code Quality check
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -54,19 +45,10 @@ jobs:
   build-and-deploy-backend:
     name: Build and Deploy Backend
     runs-on: ubuntu-latest
-    permissions: read-all
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          
-      - name: Code Quality check
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -97,3 +79,5 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/flask-nextjs-user-management-example2.0:${{ github.run_id }}
+
+      

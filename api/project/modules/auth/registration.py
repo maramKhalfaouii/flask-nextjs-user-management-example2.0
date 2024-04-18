@@ -1,15 +1,17 @@
 import logging
 from datetime import datetime, timedelta
-from flask import Blueprint, current_app
+from flask import Blueprint, current_app , Flask
 from project.modules.users.models import Users
 from project.modules.utils import generate_token_from_data
 from http import HTTPStatus
+#from flask_cors import CORS
 from flask_restx import Resource, Namespace, fields
 
 from project.extensions import db
 
 log = logging.getLogger(__name__)
-
+#app = Flask(__name__)
+#CORS(app)
 api = Namespace("Registration", description="Registration related operations")
 
 registration_model = api.model(
@@ -25,7 +27,7 @@ registration_model = api.model(
     })
 
 
-@api.route('')
+@api.route('/register')
 class Registrations(Resource):
     @api.expect(registration_model, validate=True)
     @api.doc(

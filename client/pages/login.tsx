@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { TextInput } from "components/text-input";
 import { AuthApi } from "services";
 import { login } from "utils/auth";
+import Link from 'next/link';
+
 
 const Container = styled.div`
   display: flex;
@@ -78,6 +80,7 @@ const Login = () => {
           There's an error while login, please try again!
         </div>
       )}
+      <p>Don't have an account? <Link href="/register"><a>Register now</a></Link></p>
     </Container>
   );
 };

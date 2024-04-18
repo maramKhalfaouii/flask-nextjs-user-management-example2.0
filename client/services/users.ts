@@ -23,12 +23,12 @@ export class UserApi extends Api {
     const response: ApiResponse<any> = await this.apisauce.get(
       `/api/v1/users/${id}`
     );
-
+  
     if (!response.ok) {
       const problem = getGeneralApiProblem(response);
       if (problem) return problem;
     }
-
+  
     try {
       const user: User = response.data.data;
       return { kind: "ok", user: user };
@@ -36,16 +36,16 @@ export class UserApi extends Api {
       return { kind: "bad-data" };
     }
   }
-
+  
   async getUsers(token: string): Promise<GetUsersResult> {
     this.apisauce.setHeader("Authorization", `Bearer ${token}`);
     const response: ApiResponse<any> = await this.apisauce.get("/api/v1/users");
-
+  
     if (!response.ok) {
       const problem = getGeneralApiProblem(response);
       if (problem) return problem;
     }
-
+  
     try {
       const rawUsers = response.data;
       const resultUsers: User[] = rawUsers.map(this.convertUser);
@@ -53,5 +53,5 @@ export class UserApi extends Api {
     } catch {
       return { kind: "bad-data" };
     }
-  }
+  }  
 }

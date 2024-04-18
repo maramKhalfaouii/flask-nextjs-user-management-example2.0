@@ -15,11 +15,6 @@ const Profile = () => {
           auth.token,
           auth.decodedToken.id
         );
-        console.log("API Response:", response);
-        console.log("token:", auth.token);
-
-
-
 
         if (response.kind === "ok") {
           setUserData(response.user);

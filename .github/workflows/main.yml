@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - codeQuality
 
 jobs:
   build-and-deploy-frontend:

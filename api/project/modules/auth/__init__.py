@@ -7,6 +7,8 @@ from project.modules.users.models import Users
 from flask_restx import Resource, Namespace, fields
 from project.modules.utils import authenticate_restful
 
+
+
 api = Namespace("Authentication",
                 description="Authentication related operations")
 

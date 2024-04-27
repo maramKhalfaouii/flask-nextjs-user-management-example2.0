@@ -5,7 +5,17 @@ from flask import request, jsonify
 from project.modules.users.models import Users
 from itsdangerous.url_safe import URLSafeSerializer
 
+from flask import current_app
+from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
+from werkzeug.exceptions import Unauthorized, Forbidden
+basic_auth = HTTPBasicAuth()
+token_auth = HTTPTokenAuth()
 
+@token_auth.verify_token
+def verify_token(access_token):
+    if access_token:
+        return 1
+    
 def is_admin(user_id: int) -> bool:
     user = Users.query.filter_by(id=user_id).first()
     return user.admin
@@ -26,6 +36,7 @@ def authenticate(f):
             'message': 'Provide a valid auth token.'
         }
         auth_header = request.headers.get('Authorization')
+
         print(auth_header)
         if not auth_header:
             return jsonify(response_object), HTTPStatus.FORBIDDEN
@@ -50,17 +61,21 @@ def authenticate_restful(f):
             'status': 'fail',
             'message': 'Provide a valid auth token.'
         }
+        
         auth_header = request.headers.get('Authorization')
+
+        
         if not auth_header:
             return response_object, HTTPStatus.FORBIDDEN
         auth_token = auth_header.split(" ")[1]
         resp = Users.decode_auth_token(auth_token)
+        print('***-----------------*****')
+        print(isinstance(resp, str))
         if isinstance(resp, str):
             response_object['message'] = resp
-            return response_object, HTTPStatus.UNAUTHORIZED
-        user = Users.query.filter_by(id=resp).first()
-        if not user or not user.active:
-            return response_object, HTTPStatus.UNAUTHORIZED
-        return f(user, *args, **kwargs)
-
+            print('AUTHORIZED   ***********************')
+            return response_object, HTTPStatus.ACCEPTED
+        
+    print('ret   ***********************')
+    print('ret   ***********************')
     return decorated_function

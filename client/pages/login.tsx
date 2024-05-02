@@ -80,7 +80,7 @@ const Login = () => {
           There's an error while login, please try again!
         </div>
       )}
-      <p>Don't have an account? <Link href="/register"><a>Register now</a></Link></p>
+      <p>Don't have an account? <Link href="/register"><a> Please register now </a></Link></p>
     </Container>
   );
 };

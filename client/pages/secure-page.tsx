@@ -36,7 +36,7 @@ const PasswordWithVisibilityToggle = () => {
     <div style={{ display: "flex", alignItems: "center" }}>
       <input
         type={showPassword ? "text" : "password"}
-        value={showPassword ? "yasmine1018" : "*********"}
+        value={showPassword ? "yasmine10" : "********"}
         readOnly
         style={{ flex: 1, padding: "10px", border: "1px solid #ccc", borderRadius: "5px", marginRight: "10px", fontSize: "1rem" }}
       />

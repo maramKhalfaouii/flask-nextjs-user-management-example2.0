@@ -33,7 +33,6 @@ At your first run, create the database (migration) and insert some data (seed).
 
 ```
 # Run database migration
-docker-compose exec api python manage.py db upgrade
 
 # Run database seed
 docker-compose exec api python manage.py seed_db

@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const LoginForm: React.FC<{ onSubmit: (e: FormEvent) => Promise<void> 
-  children?: React.ReactNode; // Define children as optional
+  children?: React.ReactNode; 
 }> = ({ onSubmit, children }) => {
   return (
     <form onSubmit={onSubmit}>

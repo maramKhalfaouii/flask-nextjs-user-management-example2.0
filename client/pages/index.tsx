@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useAuth } from "utils/auth";
+/*import { useAuth } from "utils/auth";*/
 
 const Home = () => {
-  const [users, setUsers] = useState([
+  const [users, /*setUsers*/] = useState([
     { id: 1, firstName: "admin", lastName: "admin", email: "admin@gmail.com", admin: true },
     { id: 2, firstName: "Yasmine", lastName: "Oumaya", email: "yasmine@gmail.com", admin: false },
     { id: 3, firstName: "Maram", lastName: "Khalfaoui", email: "maram12@enit.com", admin: false },
     { id: 4, firstName: "dev", lastName: "ops", email: "devops@outlook.com", admin: false },
     { id: 5, firstName: "user", lastName: "app", email: "user@gmail.com", admin: false },
   ]);
-  const auth = useAuth();
+  /*const auth = useAuth();*/
 
   return (
     <div style={{ maxWidth: "600px", margin: "auto" }}>

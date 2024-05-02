@@ -65,7 +65,7 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <div style={{ textAlign: "center", color: "#777" }}>Loading...</div>
+        <div style={{ textAlign: "center", color: "#777" }}>Loading....</div>
       )}
     </div>
   );

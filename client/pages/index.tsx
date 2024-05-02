@@ -11,6 +11,7 @@ const Home = () => {
   ]);
   /*const auth = useAuth();*/
 
+  
   return (
     <div style={{ maxWidth: "600px", margin: "auto" }}>
       <h1 style={{ textAlign: "center", marginBottom: "40px", color: "#333" }}>Welcome to our Home Page !</h1>

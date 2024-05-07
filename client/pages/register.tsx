@@ -105,7 +105,7 @@ const Registration = () => {
       </LoginForm>
       {isError && (
         <div className="mt-4 alert alert-danger" role="alert">
-          There's an error while creating a new account, please try again!
+          There's an error while creating a new account, please try again!!
         </div>
       )}
     </Container>
